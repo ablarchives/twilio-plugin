@@ -9,8 +9,15 @@ tabs:
   fields:
       sid:
           label: SID
+          tab: Gateway
       token:
           label: Token
+          tab: Gateway
       number:
           label: Number
-          commentBelow: Numbers only, do not include +1
+          commentBelow: The from number used by your Twilio account. Numbers only, do not include +1.
+          tab: Numbers
+      forward:
+          label: Foward
+          commentBelow: SMS messages will be fowarded here. Numbers only, do not include +1.
+          tab: Numbers
