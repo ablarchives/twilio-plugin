@@ -1,0 +1,16 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+fields:
+    _hint:
+        type: partial
+        path: $/albrightlabs/twilio/models/settings/_hint.htm
+tabs:
+  fields:
+      sid:
+          label: SID
+      token:
+          label: Token
+      number:
+          label: Number
+          commentBelow: Numbers only, do not include +1

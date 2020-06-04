@@ -17,20 +17,10 @@ class Plugin extends PluginBase
     {
         return [
             'name'        => 'Twilio',
-            'description' => 'No description provided yet...',
-            'author'      => 'AlbrightLabs',
-            'icon'        => 'icon-leaf'
+            'description' => 'Simply adds the Twilio PHP library',
+            'author'      => 'Albright Labs LLC',
+            'icon'        => 'icon-phone'
         ];
-    }
-
-    /**
-     * Register method, called when the plugin is first registered.
-     *
-     * @return void
-     */
-    public function register()
-    {
-
     }
 
     /**
@@ -47,53 +37,37 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Registers any front-end components implemented in this plugin.
-     *
-     * @return array
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'AlbrightLabs\Twilio\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
      * Registers any back-end permissions used by this plugin.
      *
      * @return array
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
         return [
-            'albrightlabs.twilio.some_permission' => [
+            'albrightlabs.twilio.access_settings' => [
                 'tab' => 'Twilio',
-                'label' => 'Some permission'
+                'label' => 'Access Twilio settings'
             ],
         ];
     }
 
-    /**
-     * Registers back-end navigation items for this plugin.
+    /*
+     * Registers any back-end settings for this plugin.
      *
      * @return array
      */
-    public function registerNavigation()
+    public function registerSettings()
     {
-        return []; // Remove this line to activate
-
         return [
             'twilio' => [
                 'label'       => 'Twilio',
-                'url'         => Backend::url('albrightlabs/twilio/mycontroller'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['albrightlabs.twilio.*'],
+                'description' => 'Connect application to Twilio account.',
+                'category'    => 'Twilio',
+                'icon'        => 'icon-phone',
+                'class'       => 'AlbrightLabs\Twilio\Models\Settings',
                 'order'       => 500,
-            ],
+                'keywords'    => 'twilio sms phone'
+            ]
         ];
     }
 }
