@@ -15,9 +15,9 @@ tabs:
           tab: Gateway
       number:
           label: Number
-          commentBelow: The from number used by your Twilio account. Numbers only, do not include +1.
+          comment: The from number used by your Twilio account. Numbers only, do not include +1.
           tab: Numbers
       forward:
           label: Foward
-          commentBelow: SMS messages will be fowarded here. Numbers only, do not include +1.
+          comment: SMS messages will be fowarded here. Numbers only, do not include +1.
           tab: Numbers
