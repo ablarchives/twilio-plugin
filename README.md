@@ -13,6 +13,9 @@ This plugin is used to add Twilio PHP library to OctoberCMS. Nothing more, nothi
 - Add support where needed by calling using `Twilio\Rest\Client as TwilioClient`
 - Twiml app should be setup to submit SMS messages to `/twilio/sms/in` so that messages can be checked
 
+**Usage**
+- Send a message by using `AlbrightLabs\Twilio\Classes\Message` and then calling `sendTwilioSms([TO],[SMS])` statically
+
 **Requirements**
 - AlbrightLabs.Client plugin
 - Twilio account

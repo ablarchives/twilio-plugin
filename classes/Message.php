@@ -1,4 +1,4 @@
-<?php namespace AlbrightLabs\Twilio;
+<?php namespace AlbrightLabs\Twilio\Classes;
 
 use ValidationException;
 use Twilio\Rest\Client as TwilioClient;
@@ -27,12 +27,12 @@ class Message
             $to = str_replace('+1','',$to);
             $number = str_replace('+1','',$number);
             $twilio = new TwilioClient($sid, $token);
-            $twilio->messages->create(
-                '+1'.$to,
-                array(
-                    'from' => '+1'.$number,
+            $message = $twilio->messages->create(
+                $to,
+                [
+                    'from' => $number,
                     'body' => $sms,
-                )
+                ]
             );
         }
         else{

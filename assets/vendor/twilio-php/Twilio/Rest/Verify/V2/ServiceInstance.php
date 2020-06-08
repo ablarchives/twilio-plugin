@@ -13,6 +13,7 @@ use Twilio\Deserialize;
 use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceResource;
 use Twilio\Options;
+use Twilio\Rest\Verify\V2\Service\EntityList;
 use Twilio\Rest\Verify\V2\Service\MessagingConfigurationList;
 use Twilio\Rest\Verify\V2\Service\RateLimitList;
 use Twilio\Rest\Verify\V2\Service\VerificationCheckList;
@@ -31,6 +32,7 @@ use Twilio\Version;
  * @property bool $dtmfInputRequired
  * @property string $ttsName
  * @property bool $doNotShareWarningEnabled
+ * @property bool $customCodeEnabled
  * @property \DateTime $dateCreated
  * @property \DateTime $dateUpdated
  * @property string $url
@@ -41,6 +43,7 @@ class ServiceInstance extends InstanceResource {
     protected $_verificationChecks;
     protected $_rateLimits;
     protected $_messagingConfigurations;
+    protected $_entities;
 
     /**
      * Initialize the ServiceInstance
@@ -64,6 +67,7 @@ class ServiceInstance extends InstanceResource {
             'dtmfInputRequired' => Values::array_get($payload, 'dtmf_input_required'),
             'ttsName' => Values::array_get($payload, 'tts_name'),
             'doNotShareWarningEnabled' => Values::array_get($payload, 'do_not_share_warning_enabled'),
+            'customCodeEnabled' => Values::array_get($payload, 'custom_code_enabled'),
             'dateCreated' => Deserialize::dateTime(Values::array_get($payload, 'date_created')),
             'dateUpdated' => Deserialize::dateTime(Values::array_get($payload, 'date_updated')),
             'url' => Values::array_get($payload, 'url'),
@@ -144,6 +148,13 @@ class ServiceInstance extends InstanceResource {
      */
     protected function getMessagingConfigurations(): MessagingConfigurationList {
         return $this->proxy()->messagingConfigurations;
+    }
+
+    /**
+     * Access the entities
+     */
+    protected function getEntities(): EntityList {
+        return $this->proxy()->entities;
     }
 
     /**

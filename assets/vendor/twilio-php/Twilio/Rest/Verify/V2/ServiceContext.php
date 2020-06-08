@@ -13,6 +13,7 @@ use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceContext;
 use Twilio\ListResource;
 use Twilio\Options;
+use Twilio\Rest\Verify\V2\Service\EntityList;
 use Twilio\Rest\Verify\V2\Service\MessagingConfigurationList;
 use Twilio\Rest\Verify\V2\Service\RateLimitList;
 use Twilio\Rest\Verify\V2\Service\VerificationCheckList;
@@ -26,15 +27,18 @@ use Twilio\Version;
  * @property VerificationCheckList $verificationChecks
  * @property RateLimitList $rateLimits
  * @property MessagingConfigurationList $messagingConfigurations
+ * @property EntityList $entities
  * @method \Twilio\Rest\Verify\V2\Service\VerificationContext verifications(string $sid)
  * @method \Twilio\Rest\Verify\V2\Service\RateLimitContext rateLimits(string $sid)
  * @method \Twilio\Rest\Verify\V2\Service\MessagingConfigurationContext messagingConfigurations(string $country)
+ * @method \Twilio\Rest\Verify\V2\Service\EntityContext entities(string $identity)
  */
 class ServiceContext extends InstanceContext {
     protected $_verifications;
     protected $_verificationChecks;
     protected $_rateLimits;
     protected $_messagingConfigurations;
+    protected $_entities;
 
     /**
      * Initialize the ServiceContext
@@ -92,6 +96,7 @@ class ServiceContext extends InstanceContext {
             'TtsName' => $options['ttsName'],
             'Psd2Enabled' => Serialize::booleanToString($options['psd2Enabled']),
             'DoNotShareWarningEnabled' => Serialize::booleanToString($options['doNotShareWarningEnabled']),
+            'CustomCodeEnabled' => Serialize::booleanToString($options['customCodeEnabled']),
         ]);
 
         $payload = $this->version->update('POST', $this->uri, [], $data);
@@ -144,6 +149,17 @@ class ServiceContext extends InstanceContext {
         }
 
         return $this->_messagingConfigurations;
+    }
+
+    /**
+     * Access the entities
+     */
+    protected function getEntities(): EntityList {
+        if (!$this->_entities) {
+            $this->_entities = new EntityList($this->version, $this->solution['sid']);
+        }
+
+        return $this->_entities;
     }
 
     /**
